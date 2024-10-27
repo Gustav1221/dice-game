@@ -11,6 +11,11 @@ var dice = Math.floor(Math.random() * 6) + 1;
 // <div class="player-score" id="score-0">43</div> js-eer domruu handaj utgiig n uurchlj bn. textcontent gedeg ugugdulruun handaj bn yrunhiiduu 49gesen ug
 //window.document.querySelector('#score-0').textContent = dice;
 //document.querySelector("#score-1").innerHTML="<em›Yes!<em>";| textContentnd html bichij bolku html bichey gevel innerhtml
+const clck = document.querySelector('.btn-roll');
+function clickevent(){
+
+}
+document.querySelector('.btn-roll').textContent = 0;
 document.querySelector('#score-0').textContent = 0;
 document.querySelector('#score-1').textContent = 0;
 
