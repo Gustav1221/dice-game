@@ -35,6 +35,7 @@ document.querySelector('.btn-roll').addEventListener('click', function (){
         //1 buusan tul toglogchiin eeljiig end nemj ugnu
 
         //ene toglogchiin eeljindee tsugluulsan onoog 0 bolgo
+        roundScore = 0;
         document.getElementById('current-' + activePlayer).textContent = 0;
         // hervee idevhtei toglogch n 0 baival idevhtei toglogchiig 1 bolgo
         //ugui bol idevhtei toglogchiing 0 bolgo
@@ -43,21 +44,25 @@ document.querySelector('.btn-roll').addEventListener('click', function (){
         }else{
             activePlayer === 0;
         }*/
-        var obj = {
+        /*var obj = {
             name : 'john',
             job : 'programmist',
             address : {
                 location : 'ub'
             }
         }
-        obj.address.location()
+        obj.address.location()*/
 
 
         // gurvalsam operation. (uur neg bichiglel ghde deed taliin bichsentei yg adil)
         activePlayer === 0? (activePlayer = 1) : (activePlayer = 0);
-        document.querySelector('.player-0-panel').classList.remove('active')
-        document.querySelector(".player-1-panel").classList.add("active")
-        //document.getElementById("#current-0").textContent = 0;
+        document.querySelector('.player-0-panel').classList.toggle('active');
+        document.querySelector(".player-1-panel").classList.toggle("active");
+         // shoog eelj soligdoh uyd alga bolgono
+         diceDOM.style.display='none';
+        
+
+        
 
         
     }
