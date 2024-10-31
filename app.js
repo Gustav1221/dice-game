@@ -1,20 +1,41 @@
+//togloomiin buh gazar ashiglagdah global huvisagchid
 // toglogchiin eeljiig hadgalah huvisagch, 1 dugeer toglogchiig 0, 2dugaar toglogchiig 1 gej temdegley
-
-var activePlayer = 0;
-
+var activePlayer;
 // toglogchdiin tsugluulsan onoog hadgalah huvisagch
-var scores = [0,0];
+var scores;
 //toglogchiin eeljindee tsugluulsan onoog hadgalah huvisagch
-var roundScore = 0;
-//shoonii ali talaaraa buusniig hadgalah huvisagch, 1-6gesen utgiig ene huvisagchind sanamsarguigeer uusgej ugnu
-//document.querySelector("#score-1").innerHTML="<em›Yes!<em>";| textContentnd html bichij bolku html bichey gevel innerhtml
-
-document.getElementById('score-0').textContent = '0';
-document.getElementById('score-1').textContent = '0';
-
-document.getElementById('current-0').textContent = '0';
-document.getElementById('current-1').textContent = '0';
+var roundScore;
+//shoonii zurgiig uzuuleh elementiig domoos haij olood end hadggalya
 var diceDOM = document.querySelector('.dice');
+//togloomiig shineer ehlehed beltgene
+function initGame(){
+    activePlayer = 0;
+    scores = [0,0];
+    roundScore = 0;
+    //document.querySelector("#score-1").innerHTML="<em›Yes!<em>";| textContentnd html bichij bolku html bichey gevel innerhtml
+
+    document.getElementById('score-0').textContent = '0';
+    document.getElementById('score-1').textContent = '0';
+
+    document.getElementById('current-0').textContent = '0';
+    document.getElementById('current-1').textContent = '0';
+    //toglogchdiin neriig butsaaj gargah
+    document.getElementById('name-0').textContent = 'Player 1';
+    document.getElementById('name-1').textContent = 'Player 2';
+    //dahin ehleh uyd winner bolson toglogchiin ungiig butsaan heviin bolgoh
+    document.querySelector('.player-0-panel').classList.remove('winner');
+    document.querySelector('.player-1-panel').classList.remove('winner');
+
+    document.querySelector('.player-0-panel').classList.remove('active');
+    document.querySelector('.player-1-panel').classList.remove('active');
+
+    document.querySelector('.player-'+activePlayer+'-panel').classList.add('active');
+
+    diceDOM.style.display='none';
+
+}
+initGame();
+
 //SHOOG SHIDEH EVENTLISTENER. negl udaa negl gazar bichij bga bolhoor anonymous function bichiv. 
 document.querySelector('.btn-roll').addEventListener('click', function (){
     //1-6 dotorh random 1 too gargaj avna
@@ -62,6 +83,4 @@ function switchToNextPlayer(){
     diceDOM.style.display='none';
 }
 //shine game ehluuleh buttonii eventlistener
-document.querySelector('.btn-new').addEventListener('click', function(){
-    
-})
+document.querySelector('.btn-new').addEventListener('click', initGame);
