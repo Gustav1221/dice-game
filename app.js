@@ -1,4 +1,6 @@
 //togloomiin buh gazar ashiglagdah global huvisagchid
+//togloom duussan esehiig hadgalah tulviin huvisagch
+var isNewGame = true;
 // toglogchiin eeljiig hadgalah huvisagch, 1 dugeer toglogchiig 0, 2dugaar toglogchiig 1 gej temdegley
 var activePlayer;
 // toglogchdiin tsugluulsan onoog hadgalah huvisagch
@@ -12,6 +14,8 @@ function initGame(){
     activePlayer = 0;
     scores = [0,0];
     roundScore = 0;
+    //togloom ehlelee gedeg tuluvt oruulna
+    isNewGame = true;
     //document.querySelector("#score-1").innerHTML="<em›Yes!<em>";| textContentnd html bichij bolku html bichey gevel innerhtml
 
     document.getElementById('score-0').textContent = '0';
@@ -38,6 +42,8 @@ initGame();
 
 //SHOOG SHIDEH EVENTLISTENER. negl udaa negl gazar bichij bga bolhoor anonymous function bichiv. 
 document.querySelector('.btn-roll').addEventListener('click', function (){
+    if(isNewGame)
+{
     //1-6 dotorh random 1 too gargaj avna
     var diceNumber = Math.floor(Math.random() * 6) + 1;
     //shoonii zurgiig web deer gargaj irne
@@ -52,15 +58,20 @@ document.querySelector('.btn-roll').addEventListener('click', function (){
     }else{
         switchToNextPlayer();
     }
+}else{
+    alert('Тоглоом дууссан байна. NEW GAME товчийг дарж шинээр эхлэнэ үү');
+}
 });
 //hold buttonii event listener
 document.querySelector(".btn-hold").addEventListener('click', function(){
-    //ug toglogchiin tsugluulsan eeljnii onoog global onoon deer nemj ugnu
+    if(isNewGame){
+        //ug toglogchiin tsugluulsan eeljnii onoog global onoon deer nemj ugnu
     scores[activePlayer]= scores[activePlayer] + roundScore;
     //Ug toglogch hojson esehiig (onoo n 100-s ih) shalgah
     //delgets deer onoog uurchilnu
     document.getElementById('score-' + activePlayer).textContent = scores[activePlayer];
     if(scores[activePlayer] >= 10){
+        isNewGame = false;
         document.getElementById('name-' +activePlayer).textContent = 'WINNNER!!!';
         document.querySelector('.player-' +activePlayer+ '-panel').classList.remove('active');
         document.querySelector('.player-' +activePlayer+ '-panel').classList.add('winner');
@@ -68,6 +79,9 @@ document.querySelector(".btn-hold").addEventListener('click', function(){
     //toglogchiin eeljiig solino
     switchToNextPlayer();
     }
+}else{
+    alert('Тоглоом дууссан байна. NEW GAME товчийг дарж шинээр эхлэнэ үү');
+}
 });
 //ene function n togloh eeljiig daraachiin toglogchruu shiljuuldeg. DONT REPEAT YOURSELF(DRY)
 function switchToNextPlayer(){
