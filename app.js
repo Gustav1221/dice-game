@@ -7,9 +7,6 @@ var scores = [0,0];
 //toglogchiin eeljindee tsugluulsan onoog hadgalah huvisagch
 var roundScore = 0;
 //shoonii ali talaaraa buusniig hadgalah huvisagch, 1-6gesen utgiig ene huvisagchind sanamsarguigeer uusgej ugnu
-
-// <div class="player-score" id="score-0">43</div> js-eer domruu handaj utgiig n uurchlj bn. textcontent gedeg ugugdulruun handaj bn yrunhiiduu 49gesen ug
-//window.document.querySelector('#score-0').textContent = dice;
 //document.querySelector("#score-1").innerHTML="<em›Yes!<em>";| textContentnd html bichij bolku html bichey gevel innerhtml
 
 document.getElementById('score-0').textContent = '0';
@@ -18,7 +15,7 @@ document.getElementById('score-1').textContent = '0';
 document.getElementById('current-0').textContent = '0';
 document.getElementById('current-1').textContent = '0';
 var diceDOM = document.querySelector('.dice');
-//shoog shideh eventlistener. negl udaa negl gazar bichij bga bolhoor anonymous function bichiv. 
+//SHOOG SHIDEH EVENTLISTENER. negl udaa negl gazar bichij bga bolhoor anonymous function bichiv. 
 document.querySelector('.btn-roll').addEventListener('click', function (){
     //1-6 dotorh random 1 too gargaj avna
     var diceNumber = Math.floor(Math.random() * 6) + 1;
@@ -32,39 +29,39 @@ document.querySelector('.btn-roll').addEventListener('click', function (){
         roundScore = roundScore + diceNumber;
         document.getElementById('current-' + activePlayer).textContent = roundScore;
     }else{
-        //1 buusan tul toglogchiin eeljiig end nemj ugnu
-
-        //ene toglogchiin eeljindee tsugluulsan onoog 0 bolgo
-        roundScore = 0;
-        document.getElementById('current-' + activePlayer).textContent = 0;
-        // hervee idevhtei toglogch n 0 baival idevhtei toglogchiig 1 bolgo
-        //ugui bol idevhtei toglogchiing 0 bolgo
-        /*if(activePlayer === 0){
-            activePlayer === 1;
-        }else{
-            activePlayer === 0;
-        }*/
-        /*var obj = {
-            name : 'john',
-            job : 'programmist',
-            address : {
-                location : 'ub'
-            }
-        }
-        obj.address.location()*/
-
-
-        // gurvalsam operation. (uur neg bichiglel ghde deed taliin bichsentei yg adil)
-        activePlayer === 0? (activePlayer = 1) : (activePlayer = 0);
-        document.querySelector('.player-0-panel').classList.toggle('active');
-        document.querySelector(".player-1-panel").classList.toggle("active");
-         // shoog eelj soligdoh uyd alga bolgono
-         diceDOM.style.display='none';
-        
-
-        
-
-        
+        switchToNextPlayer();
     }
+});
+//hold buttonii event listener
+document.querySelector(".btn-hold").addEventListener('click', function(){
+    //ug toglogchiin tsugluulsan eeljnii onoog global onoon deer nemj ugnu
+    scores[activePlayer]= scores[activePlayer] + roundScore;
+    //Ug toglogch hojson esehiig (onoo n 100-s ih) shalgah
+    //delgets deer onoog uurchilnu
+    document.getElementById('score-' + activePlayer).textContent = scores[activePlayer];
+    if(scores[activePlayer] >= 10){
+        document.getElementById('name-' +activePlayer).textContent = 'WINNNER!!!';
+        document.querySelector('.player-' +activePlayer+ '-panel').classList.remove('active');
+        document.querySelector('.player-' +activePlayer+ '-panel').classList.add('winner');
+    }else{
+    //toglogchiin eeljiig solino
+    switchToNextPlayer();
+    }
+});
+//ene function n togloh eeljiig daraachiin toglogchruu shiljuuldeg. DONT REPEAT YOURSELF(DRY)
+function switchToNextPlayer(){
+    roundScore = 0;
+    document.getElementById('current-' + activePlayer).textContent = 0;
+    // hervee idevhtei toglogch n 0 baival idevhtei toglogchiig 1 bolgo
+    //ugui bol idevhtei toglogchiing 0 bolgo
+    // gurvalsam operation. (uur neg bichiglel ghde deed taliin bichsentei yg adil)
+    activePlayer === 0? (activePlayer = 1) : (activePlayer = 0);
+    document.querySelector('.player-0-panel').classList.toggle('active');
+    document.querySelector(".player-1-panel").classList.toggle("active");
+     // shoog eelj soligdoh uyd alga bolgono
+    diceDOM.style.display='none';
 }
-);
+//shine game ehluuleh buttonii eventlistener
+document.querySelector('.btn-new').addEventListener('click', function(){
+    
+})
