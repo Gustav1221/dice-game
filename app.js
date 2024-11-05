@@ -70,7 +70,7 @@ document.querySelector(".btn-hold").addEventListener('click', function(){
     //Ug toglogch hojson esehiig (onoo n 100-s ih) shalgah
     //delgets deer onoog uurchilnu
     document.getElementById('score-' + activePlayer).textContent = scores[activePlayer];
-    if(scores[activePlayer] >= 10){
+    if(scores[activePlayer] >= 100){
         isNewGame = false;
         document.getElementById('name-' +activePlayer).textContent = 'WINNNER!!!';
         document.querySelector('.player-' +activePlayer+ '-panel').classList.remove('active');
