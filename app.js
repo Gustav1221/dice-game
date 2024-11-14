@@ -98,3 +98,4 @@ function switchToNextPlayer(){
 }
 //shine game ehluuleh buttonii eventlistener
 document.querySelector('.btn-new').addEventListener('click', initGame);
+g
